@@ -6,11 +6,23 @@ MAIN_FILE="main.c"
 EXECUTABLE_NAME="jacule"
 
 # Local de instalação do executável
-INSTALL_PATH="/usr/local/bin"
+INSTALL_PATH_LINUX="/usr/local/bin"
+INSTALL_PATH_MAC="/usr/local/bin"
 
-#instalando gcc
-sudo apt-get update
-sudo apt-get install gcc
+
+OS=$(uname -s)
+
+if [ "$OS" = "Linux" ]; then
+    sudo apt-get update
+    sudo apt-get install gcc
+    INSTALL_PATH=$INSTALL_PATH_LINUX
+elif [ "$OS" = "Darwin" ]; then 
+    brew install gcc
+    INSTALL_PATH=$INSTALL_PATH_MAC
+else
+    echo "Sistema operacional não suportado."
+    exit 1
+fi
 
 # Compilando o programa
 gcc -o $EXECUTABLE_NAME $MAIN_FILE $SOURCE_FILE 
