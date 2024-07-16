@@ -1,5 +1,5 @@
+#include "cli.h"
 #include <stdio.h>
-#include <stdarg.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -71,20 +71,20 @@ void criar_provider(const char *nome) {
             perror("Erro ao criar diretório");
         }
     } else {
-     // TODO: Implementar a criação de um provider   
+     const char *diretorios[] = {"dtos", "implementations", "models"};
+        for (int i = 0; i < 4; i++) {
+                criar_diretorio_com_caminho(2, nome, diretorios[i]);
+            }
     }
 }
 
 
-// Função para mostrar a ajuda
 void mostrar_ajuda() {
     printf("Uso: cli <opção> <comando>\n");
     printf("Opções:\n");
     printf("  -h, --help        Mostrar esta ajuda\n");
     printf("  -v, --version     Mostrar a versão do programa\n");
     printf("Comandos:\n");
-    printf("  hello             Mostrar mensagem de saudação\n");
-    printf("  bye               Mostrar mensagem de despedida\n");
     printf("  module <nome>      Criar um modulo DDD com o nome especificado\n");
     printf("  provider <nome>      Criar um provider DDD com o nome especificado\n");
 }
@@ -102,40 +102,3 @@ void mostrar_versao() {
     printf("                ||     ||\n");
 }
 
-int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        printf("Uso: %s <opção> <comando>\n", argv[0]);
-        return 1;
-    }
-
-    // Verifica as opções
-    for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
-            mostrar_ajuda();
-            return 0;
-        }
-        if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0) {
-            mostrar_versao();
-            return 0;
-        }
-    }
-
-    // Verifica os comandos
-    if (strcmp(argv[argc - 1], "hello") == 0) {
-        printf("Olá, mundo!\n");
-    } else if (strcmp(argv[argc - 1], "bye") == 0) {
-        printf("Adeus, mundo!\n");
-    } else if (strcmp(argv[argc - 2], "module") == 0) {
-        if (argc < 3) {
-            printf("Erro: Nome do diretório não especificado.\n");
-            printf("Uso: %s module <nome>\n", argv[0]);
-        } else {
-            criar_modulo(argv[2]);
-        }
-    }else {
-        printf("Comando desconhecido: %s\n", argv[argc - 1]);
-        printf("Comandos disponíveis: hello, bye\n");
-    }
-
-    return 0;
-}

@@ -2,13 +2,18 @@
 
 # Nome do arquivo de origem e do executável
 SOURCE_FILE="cli.c"
+MAIN_FILE="main.c"
 EXECUTABLE_NAME="jacule"
 
 # Local de instalação do executável
 INSTALL_PATH="/usr/local/bin"
 
+#instalando gcc
+sudo apt-get update
+sudo apt-get install gcc
+
 # Compilando o programa
-gcc -o $EXECUTABLE_NAME $SOURCE_FILE
+gcc -o $EXECUTABLE_NAME $MAIN_FILE $SOURCE_FILE 
 
 # Verifica se a compilação foi bem-sucedida
 if [ $? -eq 0 ]; then

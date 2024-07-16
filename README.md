@@ -6,7 +6,6 @@ Este é o CLI DDD Backend, uma ferramenta de linha de comando desenvolvida para 
 
 - Criar módulos DDD com subdiretórios estruturados.
 - Criar providers DDD (ainda em desenvolvimento).
-- Simples comandos de saudação e despedida.
 
 ## Pré-requisitos
 
