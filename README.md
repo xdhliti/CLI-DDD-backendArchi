@@ -27,6 +27,8 @@ Para instalar o CLI DDD Backend, siga estes passos:
 
 3. Execute o script de instalação:
     ./install.sh
+4. Se for windows
+    powershell install.ps1
 
 Após a instalação, você poderá executar `jacule` de qualquer local no terminal.
 
